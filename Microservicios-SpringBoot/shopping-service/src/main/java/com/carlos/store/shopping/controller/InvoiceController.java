@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("/invoices")
-public class InvoiceRest {
+public class InvoiceController {
 
 	@Autowired
 	InvoiceService invoiceService;

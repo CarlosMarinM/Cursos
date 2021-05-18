@@ -1,11 +1,15 @@
 package com.carlos.store.shopping.service;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carlos.store.shopping.client.CustomerClient;
+import com.carlos.store.shopping.client.ProductClient;
 import com.carlos.store.shopping.entity.Invoice;
+import com.carlos.store.shopping.entity.InvoiceItem;
 import com.carlos.store.shopping.repository.InvoiceItemsRepository;
 import com.carlos.store.shopping.repository.InvoiceRepository;
 
@@ -17,13 +21,24 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Autowired
 	InvoiceRepository invoiceRepository;
-
 	@Autowired
 	InvoiceItemsRepository invoiceItemsRepository;
+	@Autowired
+	CustomerClient customerClient;
+	@Autowired
+	ProductClient productClient;
 
 	@Override
 	public List<Invoice> findInvoiceAll() {
-		return invoiceRepository.findAll();
+		List<Invoice> invoiceList = invoiceRepository.findAll();
+
+		invoiceList.forEach(invoice -> {
+			invoice.setCustomer(customerClient.getCustomer(invoice.getCustomerId()).getBody());
+			invoice.getItems()
+					.forEach(item -> item.setProduct(productClient.getProduct(item.getProductId()).getBody()));
+		});
+
+		return invoiceList;
 	}
 
 	@Override
@@ -33,7 +48,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 			return invoiceDB;
 		}
 		invoice.setState("CREATED");
-		return invoiceRepository.save(invoice);
+		invoiceDB = invoiceRepository.save(invoice);
+
+		Consumer<InvoiceItem> updateStockProduct = invoiceItem -> {
+			productClient.updateStockProduct(invoiceItem.getProductId(), invoiceItem.getQuantity() * -1);
+		};
+		invoiceDB.getItems().forEach(updateStockProduct);
+
+		return invoiceDB;
 	}
 
 	@Override
@@ -62,6 +84,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public Invoice getInvoice(Long id) {
-		return invoiceRepository.findById(id).orElse(null);
+		Invoice invoice = invoiceRepository.findById(id).orElse(null);
+
+		if (invoice != null) {
+			invoice.setCustomer(customerClient.getCustomer(invoice.getCustomerId()).getBody());
+			invoice.getItems()
+					.forEach(item -> item.setProduct(productClient.getProduct(item.getProductId()).getBody()));
+		}
+
+		return invoice;
 	}
 }
