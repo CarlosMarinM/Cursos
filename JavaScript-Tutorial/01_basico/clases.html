@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clases</title>
+  </head>
+  <body>
+    <h1>Clases</h1>
+    <script>
+      class Animal {
+        constructor(nombre, genero) {
+          this.nombre = nombre;
+          this.genero = genero;
+        }
+
+        sonar() {
+          console.log("Hago ruidos porque estoy vivo");
+        }
+
+        saludar() {
+          console.log(`Hola me llamo ${this.nombre}`);
+        }
+      }
+
+      class Perro extends Animal {
+        constructor(nombre, genero, tamanio) {
+          super(nombre, genero);
+          this.tamanio = tamanio;
+          this.raza;
+        }
+
+        sonar() {
+          console.log("Soy un perro y mi sonido es un ladrido");
+        }
+
+        ladrar() {
+          console.log("Gauuuu guauuuu !!!!");
+        }
+
+        static queEres() {
+          console.log("Soy un perro, el mejor amigo del hombre");
+        }
+
+        get getRaza() {
+          return this.raza;
+        }
+
+        set setRaza(raza) {
+          this.raza = raza;
+        }
+      }
+
+      Perro.queEres();
+
+      const perro = new Perro("Firulais", "Macho", "Grande"),
+        gato = new Animal("Minina", "Hembra");
+
+      console.log(perro);
+      perro.sonar();
+      perro.saludar();
+      perro.ladrar();
+      perro.setRaza = "Labrador";
+      console.log(perro.getRaza);
+
+      console.log(gato);
+      gato.sonar();
+      gato.saludar();
+    </script>
+  </body>
+</html>

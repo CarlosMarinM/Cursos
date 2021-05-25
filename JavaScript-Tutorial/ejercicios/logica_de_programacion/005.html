@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 005</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 005</h1>
+    <script>
+      //*********************************************************************************
+      // 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+      const convertirBaseNumerica = (numero = undefined, base = undefined) => {
+        if (numero === undefined) throw new Error("No ingreso un numero");
+        if (typeof numero !== "number")
+          throw new Error("El valor ingresado no es un numero");
+
+        if (base === undefined) throw new Error("No ingreso un numero");
+        if (typeof base !== "number")
+          throw new Error("El valor ingresado no es un numero");
+
+        if (base === 2) {
+          //   let resultado = 0;
+          //   let arregloNumero = numero.toString().split("").reverse();
+          //   for (const [index, digito] of arregloNumero.entries()) {
+          //     if (!/(0|1)/.test(digito))
+          //       throw new Error("El valor ingresado no es un numero binario");
+          //     resultado += digito * Math.pow(2, index);
+          //   }
+          //   return resultado;
+          return parseInt(numero, base);
+        } else if (base === 10) {
+          //   let resultado = "";
+          //   while (numero > 1) {
+          //     resultado = (numero % 2) + resultado;
+          //     numero = Math.trunc(numero / 2);
+          //   }
+          //   return numero + resultado;
+          return numero.toString(2);
+        } else {
+          throw new Error("El valor ingresado no es un numero");
+        }
+      };
+
+      let numeroUno = 4;
+      let base = 10;
+      console.log(convertirBaseNumerica(numeroUno, base));
+
+      //*********************************************************************************
+      // 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+      const montoConDescuento = (numero = undefined, porcentaje = 0) => {
+        if (numero === undefined) throw new Error("No ingreso un numero");
+        if (typeof numero !== "number")
+          throw new Error("El valor ingresado no es un numero");
+        if (Math.sign(numero) === -1)
+          throw new Error("El valor no puede ser negativo");
+
+        if (typeof porcentaje !== "number")
+          throw new Error("El valor ingresado no es un numero");
+        if (Math.sign(porcentaje) === -1)
+          throw new Error("El porcentaje no puede ser negativo");
+
+        return numero - (numero * porcentaje) / 100;
+      };
+
+      let numeroDos = 500;
+      let descuento = 20;
+      console.log(
+        `El valor de ${numeroDos} con descuento de ${descuento}% es ${montoConDescuento(
+          numeroDos,
+          descuento
+        )}`
+      );
+
+      //*********************************************************************************
+      // 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
+      const contarAños = (fecha = undefined) => {
+        if (fecha === undefined) throw new Error("No ingreso un valor");
+        if (!(fecha instanceof Date))
+          throw new Error("El valor ingresado no es una fecha");
+
+        let fechaActual = new Date();
+        return fechaActual.getFullYear() - fecha.getFullYear();
+      };
+
+      let fecha = new Date(1984, 4, 23);
+      console.log(`La diferencia entre la fecha ${fecha} y la fecha ${new Date()} es de ${contarAños(fecha)} años`);
+    </script>
+  </body>
+</html>

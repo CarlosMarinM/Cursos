@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeakSets & WeakMaps</title>
+  </head>
+
+  <body>
+    <h1>WeakSets & WeakMaps</h1>
+    <script>
+      //   const weakSet = new WeakSet([
+      //     1,
+      //     2,
+      //     3,
+      //     3,
+      //     4,
+      //     true,
+      //     false,
+      //     true,
+      //     {},
+      //     [],
+      //     "hola",
+      //     {},
+      //   ]);
+
+      const weakSet = new WeakSet();
+      //   weakSet.add("1");
+      let valor1 = { valor1: 1 };
+      let valor2 = { valor2: 2 };
+      let valor3 = { valor3: 3 };
+
+      weakSet.add(valor1);
+      weakSet.add(valor2);
+      weakSet.add(valor3);
+      console.log(weakSet);
+
+      //   const weakMap  = new WeakMap([
+      //     ["nombre", "Firulais"],
+      //     ["edad", 5],
+      //     ["animal", "perro"],
+      //     [null, "nulo"],
+      //   ]);
+
+      const weakMap = new WeakMap();
+      let llave1 = {};
+      let llave2 = {};
+      let llave3 = {};
+
+      weakMap.set(llave1, 1);
+      weakMap.set(llave2, 2);
+      weakMap.set(llave3, 3);
+      console.log(weakMap);
+    </script>
+  </body>
+</html>

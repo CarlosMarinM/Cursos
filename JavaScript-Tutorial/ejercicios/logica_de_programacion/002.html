@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 002</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 002</h1>
+    <script>
+      //*********************************************************************************
+      // 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+      const invertirTexto = (texto = "") => texto.split("").reverse().join("");
+      let cadena = "Carlos Marin";
+      //   let cadena = 1250;
+      //   let cadena = [1,2,3,4,5,6];
+      // let cadena = {
+      //   nombre: "Carlos",
+      //   apellido: "Marin",
+      // };
+
+      console.log(invertirTexto(cadena));
+
+      //*********************************************************************************
+      // 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+      const buscarPalabraRepetida = (texto = "", coincidencia = "") => {
+        if (!texto) return console.warn("No ingreso el texto");
+
+        if (!coincidencia)
+          return console.warn("No ingreso el texto a coincidir");
+
+        let i = 0,
+          contador = 0;
+
+        while (i !== -1) {
+          i = texto.indexOf(coincidencia, i);
+          if (i !== -1) {
+            i++;
+            contador++;
+          }
+        }
+        return contador;
+      };
+
+      let cadenaDos = "hola mundo adios mundo en el mundo";
+      let coincide = "mundo";
+      console.log(buscarPalabraRepetida(cadenaDos));
+
+      console.log(buscarPalabraRepetida(cadenaDos, coincide));
+
+      //*********************************************************************************
+      // 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+      const palindromo = (texto = "") => {
+        if (!texto) return console.warn("No ingreso el texto");
+
+        texto = texto.toLowerCase();
+        let textoAlReves = texto.split("").reverse().join("");
+
+        return texto === textoAlReves;
+      };
+
+      let cadenaTres = "Solas";
+      console.log(
+        `El texto ${cadenaTres} es palindromo: ${palindromo(cadenaTres)}`
+      );
+
+      //*********************************************************************************
+      // 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+      const eliminarCaracteres = (texto = "", patron = "") =>
+        !texto
+          ? console.warn("No ingreso el texto")
+          : !patron
+          ? console.warn("no ingreso un patrón")
+          : texto.replace(new RegExp(patron, "ig"), "");
+
+      let cadenaCuatro = "xyz1, xyz2, xyz3, xyz4, yxz5 y xyz6";
+      let patron = "xyz";
+      console.log(eliminarCaracteres(cadenaCuatro, patron));
+    </script>
+  </body>
+</html>

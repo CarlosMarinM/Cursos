@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 004</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 004</h1>
+    <script>
+      //*********************************************************************************
+      // 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+      const primo = (numero = undefined) => {
+        if (numero === undefined) return console.warn("No ingreso un numero");
+        if (typeof numero !== "number")
+          return console.error("El valor ingresado no es un numero");
+        if (numero <= 1)
+          return console.warn("Solo se permiten numeros enteros mayores a uno");
+
+        for (let i = 2; i <= numero / 2; i++) {
+          if (numero % i === 0) return false;
+        }
+
+        return true;
+      };
+
+      let numeroUno = 991;
+      console.log(
+        `El número ${numeroUno} ${primo(numeroUno) ? "es" : "no es"} primo`
+      );
+
+      //*********************************************************************************
+      // 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+      const par = (numero = undefined) => {
+        if (numero === undefined) return console.warn("No ingreso un numero");
+        if (typeof numero !== "number")
+          return console.error("El valor ingresado no es un numero");
+
+        return numero % 2 === 0;
+      };
+
+      let numeroDos = 246;
+      console.log(
+        `El número ${numeroDos} es ${par(numeroDos) ? "par" : "impar"}`
+      );
+      //*********************************************************************************
+      // 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+      const convertirTemperatura = (
+        numero = undefined,
+        conversion = undefined
+      ) => {
+        if (numero === undefined) throw new Error("No ingreso un numero");
+        if (typeof numero !== "number")
+          throw new Error("El valor ingresado no es un numero");
+
+        if (conversion === undefined)
+          throw new Error("No ingreso la unidad de medida");
+        if (typeof conversion !== "string")
+          throw new Error("La unidad de medida no es alfabetico");
+
+        if (conversion === "C") return (numero * 9) / 5 + 32;
+        else if (conversion === "F") return ((numero - 32) * 5) / 9;
+        else throw new Error("La unidad de medida no es válida");
+      };
+
+      let numeroTres = 0;
+      let unidadMedida = "F";
+      console.log(
+        `${numeroTres} °${unidadMedida} = ${convertirTemperatura(
+          numeroTres,
+          unidadMedida
+        )} °${unidadMedida === "C" ? "F" : "C"}`
+      );
+    </script>
+  </body>
+</html>

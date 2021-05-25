@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 001</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 001</h1>
+    <script>
+      //*********************************************************************************
+      //  1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+      function contarNumeroCaracteres(cadena) {
+        let tamanio = cadena.length;
+        if (tamanio === undefined) {
+          console.error("El argumento no es una cadena de texto");
+        } else {
+          return tamanio;
+        }
+      }
+
+      let cadena = "Carlos Marin";
+      //   let cadena = 1250;
+      //   let cadena = [1,2,3,4,5,6];
+      // let cadena = {
+      //   nombre: "Carlos",
+      //   apellido: "Marin",
+      // };
+
+      let tamanio = contarNumeroCaracteres(cadena);
+      console.log(tamanio);
+
+      //*********************************************************************************
+      // 2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+      function recortarTexto(cadena, indice) {
+        try {
+          return cadena.substr(0, indice);
+        } catch (error) {
+          console.error("El argumento no es una cadena de texto");
+        }
+      }
+      let textoUno = "Hola Mundo";
+      // let textoUno = 123;
+      console.log(recortarTexto(textoUno, 4));
+
+      //*********************************************************************************
+      // 3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+      function separarTexto(cadena, caracter) {
+        try {
+          return cadena.split(caracter);
+        } catch (error) {
+          console.error("El argumento no es una cadena de texto");
+        }
+      }
+      let textoDos = "Hola que tal";
+      // let textoDos = [1,2,3];
+      console.log(separarTexto(textoDos, " "));
+
+      //*********************************************************************************
+      // 4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+      function repetirTexto(cadena, numRepeticion) {
+        try {
+          return cadena.repeat(numRepeticion);
+        } catch (error) {
+          console.error("El argumento no es una cadena de texto");
+        }
+      }
+      let textoTres = "Hola que tal";
+      // let textoTres = 1548;
+      console.log(repetirTexto(textoTres, 3));
+    </script>
+  </body>
+</html>

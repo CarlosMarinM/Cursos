@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Loop</title>
+  </head>
+
+  <body>
+    <h1>Event Loop</h1>
+    <script>
+      // Codigo sincrono bloqueante
+      (() => {
+        console.log("Código sincrono");
+        console.log("Inicio");
+
+        function uno() {
+          console.log("Uno");
+          dos();
+          console.log("Tres");
+        }
+
+        function dos() {
+          console.log("Dos");
+        }
+
+        uno();
+        console.log("Fin");
+      })();
+
+      // Codigo asincrono no bloqueante
+      (() => {
+        console.log("Código asincrono");
+        console.log("Inicio");
+
+        function uno() {
+          setTimeout(() => {
+            console.log("Uno");
+          }, 0);
+          dos();
+          console.log("Tres");
+        }
+
+        function dos() {
+          setTimeout(() => {
+            console.log("Dos");
+          }, 1000);
+        }
+
+        uno();
+        console.log("Fin");
+      })();
+    </script>
+  </body>
+</html>

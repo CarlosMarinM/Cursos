@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función Flecha (Arrow Function)</title>
+  </head>
+  <body>
+    <h1>Función Flecha (Arrow Function)</h1>
+    <script>
+      // const saludar = function(){
+      //     console.log(`Hola`);
+      // }
+
+      // const saludar = () => console.log(`Hola`);
+
+      const saludar = (nombre) => console.log(`Hola ${nombre}`);
+      saludar("Carlos");
+
+      const sumar = (a, b) => a + b;
+      console.log(sumar(3, 5));
+
+      const funcionVariasLineas = () => {
+        console.log("Uno");
+        console.log("Dos");
+        console.log("Tres");
+      };
+      funcionVariasLineas();
+
+      const vocales = ["a", "e", "i", "o", "u"];
+      vocales.forEach((item, index) =>
+        console.log(`${item} esta en la posición ${index}`)
+      );
+
+      // const persona = {
+      //   nombre: "Carlos",
+      //   saludar: function () {
+      //     console.log(this);
+      //   },
+      // };
+
+      const persona = {
+        nombre: "Carlos",
+        saludar: () => console.log(this),
+      };
+      persona.saludar();
+    </script>
+  </body>
+</html>

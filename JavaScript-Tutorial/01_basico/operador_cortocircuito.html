@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operador de Cortocircuito</title>
+  </head>
+  <body>
+    <h1>Operador de Cortocircuito</h1>
+    <script>
+      function saludar(nombre) {
+        nombre = nombre || "Desconocido";
+        console.log(`Hola ${nombre}`);
+      }
+
+      saludar("Carlos");
+      saludar();
+
+      console.log("cadena" || "derecha");
+      console.log(20 || "derecha");
+      console.log(true || "derecha");
+      console.log([] || "derecha");
+      console.log({} || "derecha");
+      console.log(false || "derecha");
+      console.log(null || "derecha");
+      console.log(undefined || "derecha");
+      console.log("" || "derecha");
+      console.log(0 || "derecha");
+      
+      console.log("cadena" && "derecha");
+      console.log(20 && "derecha");
+      console.log(true && "derecha");
+      console.log([] && "derecha");
+      console.log({} && "derecha");
+      console.log(false && "derecha");
+      console.log(null && "derecha");
+      console.log(undefined && "derecha");
+      console.log("" && "derecha");
+      console.log(0 && "derecha");
+    </script>
+  </body>
+</html>

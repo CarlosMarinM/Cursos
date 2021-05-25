@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 007</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 007</h1>
+    <script>
+      //*********************************************************************************
+      // 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+      const arrayAlCuadrado = (array = undefined) => {
+        if (array === undefined) throw new Error("No ingreso un valor");
+        if (!(array instanceof Array))
+          throw new Error("El valor ingresado no es un array");
+        if (array.length === 0) throw new Error("El arreglo está vacio");
+
+        for (const iterator of array) {
+          if (typeof iterator !== "number")
+            throw new Error(
+              `El valor ${iterator} es de tipo ${typeof iterator}`
+            );
+        }
+
+        return array.map((numero) => numero * numero);
+      };
+
+      let arrayUno = [1, 2, 3, 5];
+      console.log(
+        `El arreglo ${arrayUno} al cuadrado es ${arrayAlCuadrado(arrayUno)}`
+      );
+
+      //*********************************************************************************
+      // 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+      const mayorYMenor = (array = undefined) => {
+        if (array === undefined) throw new Error("No ingreso un valor");
+        if (!(array instanceof Array))
+          throw new Error("El valor ingresado no es un array");
+        if (array.length === 0) throw new Error("El arreglo está vacio");
+        for (const iterator of array) {
+          if (typeof iterator !== "number")
+            throw new Error(
+              `El valor ${iterator} es de tipo ${typeof iterator}`
+            );
+        }
+
+        return [Math.max(...array), Math.min(...array)];
+      };
+
+      let arrayDos = [-1, -2, -3, -4];
+      console.log(
+        `El número mayor del arreglo ${arrayDos} es ${mayorYMenor(arrayDos)[0]}`
+      );
+      console.log(
+        `El número menor del arreglo ${arrayDos} es ${mayorYMenor(arrayDos)[1]}`
+      );
+
+      //*********************************************************************************
+      // 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+      const paresImpares = (array = undefined) => {
+        if (array === undefined) throw new Error("No ingreso un valor");
+        if (!(array instanceof Array))
+          throw new Error("El valor ingresado no es un array");
+        if (array.length === 0) throw new Error("El arreglo está vacio");
+        for (const iterator of array) {
+          if (typeof iterator !== "number")
+            throw new Error(
+              `El valor ${iterator} es de tipo ${typeof iterator}`
+            );
+        }
+
+        let pares = array.filter(numero => numero % 2 === 0);
+        let impares = array.filter(numero => numero % 2 !== 0);
+
+        return { pares, impares };
+      };
+
+      let arrayTres = [-1, 2, -7, 4, 0, -11, -4, 1];
+      console.log(
+        `Los número pares del arreglo ${arrayTres} son ${
+          paresImpares(arrayTres).pares
+        }`
+      );
+      console.log(
+        `Los número impares del arreglo ${arrayTres} son ${
+          paresImpares(arrayTres).impares
+        }`
+      );
+    </script>
+  </body>
+</html>

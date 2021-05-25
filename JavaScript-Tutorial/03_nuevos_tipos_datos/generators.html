@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generators</title>
+  </head>
+
+  <body>
+    <h1>Generators</h1>
+    <script>
+      function* iterable() {
+        yield "hola";
+        console.log("Despues de primer yield");
+        yield "hola2";
+        console.log("Despues de segundo yield");
+        yield "hola3";
+        yield "hola4";
+      }
+
+      let iterator = iterable();
+
+      for (const y of iterator) {
+          console.log(y);
+      }
+
+      const arreglo = [...iterable()]
+      console.log(arreglo);
+
+      
+    </script>
+  </body>
+</html>

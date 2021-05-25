@@ -6,9 +6,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/CarlosMarinM/Cursos.git
-          search-paths:          - Microservicios-SpringBoot\config-data
-          username: ${GIT_USER}
-          password: ${GIT_PASSWORD}
+          uri: https://github.com/CarlosMarinM/Cursos
+          search-paths:          - Microservicios-SpringBoot/config-data/
+#          username: ${GIT_USER}
+#          password: ${GIT_PASSWORD}
+          username: CarlosMarinM
+          password: Imhotep*18
   security:    user:      name: root
       password: s3cr3t

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuracion</title>
+  </head>
+  <body>
+    <h1>Destructuración</h1>
+    <script>
+      const arreglo = [1, 2, 3, 4];
+      const [uno, dos, tres, cuatro] = arreglo;
+
+      console.log(arreglo);
+      console.log(uno, dos, tres, cuatro);
+
+      const objeto = {
+        nombre: "Carlos",
+        apellido: "Marin",
+        edad: 31,
+      };
+      const { nombre, apellido, edad } = objeto;
+
+      console.log(objeto);
+      console.log(nombre, apellido, edad);
+    </script>
+  </body>
+</html>

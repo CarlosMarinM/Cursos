@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promesas</title>
+  </head>
+
+  <body>
+    <h1>Promesas</h1>
+    <script>
+      const cuadradoPromise = (value) => {
+        if (typeof value !== "number")
+          return Promise.reject(
+            `Error, el valor ${value} ingresado no es un número`
+          );
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              value,
+              result: value * value,
+            });
+          }, 0 | (Math.random() * 1000));
+        });
+      };
+
+      cuadradoPromise(0)
+        .then((resolve) => {
+          console.log("Inicio promesa");
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          return cuadradoPromise(1);
+        })
+        .then((resolve) => {
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          return cuadradoPromise(2);
+        })
+        .then((resolve) => {
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          return cuadradoPromise(3);
+        })
+        .then((resolve) => {
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          return cuadradoPromise("4");
+        })
+        .then((resolve) => {
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          return cuadradoPromise(5);
+        })
+        .then((resolve) => {
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          return cuadradoPromise(6);
+        })
+        .then((resolve) => {
+          console.log(`Promise: ${resolve.value}, ${resolve.result}`);
+          console.log("Fin promesa");
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>

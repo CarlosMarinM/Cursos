@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxies</title>
+  </head>
+
+  <body>
+    <h1>Proxies</h1>
+    <script>
+      const persona = {
+        nombre: "",
+        apellido: "",
+        edad: 0,
+      };
+
+      const manejador = {
+        set(objeto, propiedad, valor) {
+          if (Object.keys(objeto).indexOf(propiedad) === -1)
+            throw new Error(
+              `La propiedad "${propiedad}" no existe en el objeto persona`
+            );
+          if (
+            (propiedad === "nombre" || propiedad === "apellido") &&
+            !/^[a-záéíóúñ\s]+$/gi.test(valor)
+          )
+            throw new Error(
+              `La propiedad "${propiedad}" sólo acepta letras y espacios`
+            );
+          objeto[propiedad] = valor;
+        },
+      };
+
+      const carlos = new Proxy(persona, manejador);
+      carlos.nombre = "Carlos Arturo";
+      carlos.apellido = "Marin";
+      carlos.edad = 35;
+      //   carlos.id = 1234;
+      console.log(carlos);
+      console.log(persona);
+    </script>
+  </body>
+</html>

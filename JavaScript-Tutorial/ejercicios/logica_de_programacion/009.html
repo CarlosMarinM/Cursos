@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 009</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 009</h1>
+    <script>
+      // *********************************************************************************
+      // 27) Programa una clase llamada Pelicula.
+
+      // La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+      //   - Todos los datos del objeto son obligatorios.
+      //   - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
+      //   - Valida que el título no rebase los 100 caracteres.
+      //   - Valida que el director no rebase los 50 caracteres.
+      //   - Valida que el año de estreno sea un número entero de 4 dígitos.
+      //   - Valida que el país o paises sea introducidos en forma de arreglo.
+      //   - Valida que los géneros sean introducidos en forma de arreglo.
+      //   - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+      //   - Crea un método estático que devuelva los géneros aceptados*.
+      //   - Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
+      //   - Crea un método que devuelva toda la ficha técnica de la película.
+      //   - Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha técnica de cada película.
+
+      // * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+      class Pelicula {
+        constructor({
+          id,
+          titulo,
+          director,
+          año,
+          paises,
+          generos,
+          calificacion,
+        }) {
+          this.id = id;
+          this.titulo = titulo;
+          this.director = director;
+          this.año = año;
+          this.paises = paises;
+          this.generos = generos;
+          this.calificacion = calificacion;
+          this.validaciones();
+        }
+
+        validaciones() {
+          this.validarRequeridos();
+          this.validarId(this.id);
+          this.validarTitulo(this.titulo);
+          this.validarDirector(this.director);
+          this.validarAño(this.año);
+          this.validarPaises(this.paises);
+          this.validarGeneros(this.generos);
+          this.validarCalificacion(this.calificacion);
+        }
+
+        validarRequeridos() {
+          if (this.id === undefined) throw new Error("No ingreso un id");
+          if (this.titulo === undefined)
+            throw new Error("No ingreso un titulo");
+          if (this.director === undefined)
+            throw new Error("No ingreso un director");
+          if (this.año === undefined) throw new Error("No ingreso un año");
+          if (this.paises === undefined)
+            throw new Error("No ingreso un valor en paises");
+          if (this.generos === undefined)
+            throw new Error("No ingreso un valor en generos");
+          if (this.calificacion === undefined)
+            throw new Error("No ingreso una calificacion");
+        }
+
+        validarString(nombre, valor) {
+          if (typeof valor !== "string")
+            throw new Error(`El ${nombre} debe ser de tipo string`);
+          if (valor.length === 0)
+            throw new Error(`El ${nombre} no puede estar vacio`);
+        }
+
+        validarNumero(nombre, valor) {
+          if (typeof valor !== "number")
+            throw new Error(`El ${nombre} debe ser de tipo numerico`);
+        }
+
+        validarArray(nombre, valor) {
+          if (!(valor instanceof Array))
+            throw new Error(`Los ${nombre} deben estar definidos en un array`);
+          if (valor.length === 0)
+            throw new Error(`No se permite un array vacio en ${nombre}`);
+        }
+
+        //   - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
+        validarId(id) {
+          this.validarString("id", id);
+          if (id.length !== 9) throw new Error("El id debe tener 9 caracteres");
+          if (!/^[a-z]{2}\d{7}$/gi.test(id))
+            throw new Error("El id debe tener 2 letras seguidas de 7 números");
+        }
+
+        //   - Valida que el título no rebase los 100 caracteres.
+        validarTitulo(titulo) {
+          this.validarString("titulo", titulo);
+          if (titulo.length > 100)
+            throw new Error("El titulo debe tener máximo 100 caracteres");
+        }
+
+        //   - Valida que el director no rebase los 50 caracteres.
+        validarDirector(director) {
+          this.validarString("director", director);
+          if (director.length > 50)
+            throw new Error("El director debe tener máximo 50 caracteres");
+        }
+
+        //   - Valida que el año de estreno sea un número entero de 4 dígitos.
+        validarAño(año) {
+          this.validarNumero("año", año);
+          if (!/^\d{4}$/gi.test(año))
+            throw new Error("El año debe tener 4 digitos");
+        }
+
+        //   - Valida que el país o paises sea introducidos en forma de arreglo.
+        validarPaises(paises) {
+          this.validarArray("paises", paises);
+        }
+
+        //   - Valida que los géneros sean introducidos en forma de arreglo.
+        //   - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+        validarGeneros(generos) {
+          this.validarArray("generos", generos);
+          for (const genero of generos) {
+            if (!Pelicula.listaGeneros.includes(genero))
+              throw new Error(`${genero} no es un género aceptado`);
+          }
+        }
+
+        //   - Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
+        validarCalificacion(calificacion) {
+          this.validarNumero("calificacion", calificacion);
+          if (!/^\d{1}(\.\d{1})?$/gi.test(calificacion) && calificacion !== 10)
+            throw new Error(
+              "La calificacion debe estar en 0 y 10, se permite un digito decimal"
+            );
+        }
+
+        //   - Crea un método estático que devuelva los géneros aceptados*.
+        // * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+        static get listaGeneros() {
+          return [
+            "Action",
+            "Adult",
+            "Adventure",
+            "Animation",
+            "Biography",
+            "Comedy",
+            "Crime",
+            "Documentary",
+            "Drama",
+            "Family",
+            "Fantasy",
+            "Film Noir",
+            "Game-Show",
+            "History",
+            "Horror",
+            "Musical",
+            "Music",
+            "Mystery",
+            "News",
+            "Reality-TV",
+            "Romance",
+            "Sci-Fi",
+            "Short",
+            "Sport",
+            "Talk-Show",
+            "Thriller",
+            "War",
+            "Western",
+          ];
+        }
+
+        //   - Crea un método que devuelva toda la ficha técnica de la película.
+        obtenerFichaTecnica() {
+          return this;
+        }
+      }
+
+      const arregloPeliculas = [
+        {
+          id: "RH3456789",
+          titulo: "Avergers: End Game",
+          director: "Stan Lee",
+          año: 2019,
+          paises: ["EEUU"],
+          generos: ["Action", "Comedy"],
+          calificacion: 10,
+        },
+        {
+          id: "QS9876543",
+          titulo: "Avengers: Infinity War",
+          director: "Stan Lee",
+          año: 2018,
+          paises: ["EEUU", "Mexico"],
+          generos: ["Action", "Comedy", "Family"],
+          calificacion: 9.8,
+        },
+        {
+          id: "WX8796541",
+          titulo: "Toy Story 4",
+          director: "Disney",
+          año: 2019,
+          paises: ["EEUU", "Inglaterra"],
+          generos: ["Animation"],
+          calificacion: 9.1,
+        },
+      ];
+
+      arregloPeliculas.forEach((pelicula) => {
+        const objetoPelicula = new Pelicula(pelicula);
+        console.log(objetoPelicula.obtenerFichaTecnica());
+      });
+    </script>
+  </body>
+</html>

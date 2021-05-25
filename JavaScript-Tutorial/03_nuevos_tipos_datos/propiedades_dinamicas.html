@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxies</title>
+  </head>
+
+  <body>
+    <h1>Proxies</h1>
+    <script>
+      let aleatorio = Math.round(Math.random() * 100 + 5);
+      const objUsuarios = {
+        propiedad: "Valor",
+        [`id_${aleatorio}`]: "Valor Aleatorio",
+      };
+      console.log(objUsuarios);
+
+      const usuarios = ["Carlos", "Arturo", "Marin", "Mendez"];
+      usuarios.forEach(
+        (usuario, index) => (objUsuarios[`id_${index}`] = usuario)
+      );
+
+      console.log(objUsuarios);
+    </script>
+  </body>
+</html>

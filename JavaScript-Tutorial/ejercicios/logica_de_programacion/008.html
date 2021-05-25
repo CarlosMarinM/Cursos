@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 008</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 008</h1>
+    <script>
+      //*********************************************************************************
+      // 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+      const ordenarArray = (array = undefined) => {
+        if (array === undefined) throw new Error("No ingreso un valor");
+        if (!(array instanceof Array))
+          throw new Error("El valor ingresado no es un array");
+        if (array.length === 0) throw new Error("El arreglo está vacio");
+
+        for (const iterator of array) {
+          if (typeof iterator !== "number")
+            throw new Error(
+              `El valor ${iterator} es de tipo ${typeof iterator}`
+            );
+        }
+
+        return {
+          ascendente: array.map((i) => i).sort((a, b) => a - b),
+          descendente: array.map((i) => i).sort((x, y) => y - x),
+        };
+      };
+
+      let arrayUno = [1, -2, 3, -5];
+      console.log(
+        `El orden ascendente del arreglo ${arrayUno} es ${
+          ordenarArray(arrayUno).ascendente
+        }`
+      );
+      console.log(
+        `El orden descendente del arreglo ${arrayUno} es ${
+          ordenarArray(arrayUno).descendente
+        }`
+      );
+
+      //*********************************************************************************
+      // 25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+      const eliminarRepetidos = (array = undefined) => {
+        if (array === undefined) throw new Error("No ingreso un valor");
+        if (!(array instanceof Array))
+          throw new Error("El valor ingresado no es un array");
+        if (array.length === 0) throw new Error("El arreglo está vacio");
+
+        // const arraySinRepetidos = array.filter(
+        //   (item, index) => array.indexOf(item) === index
+        // );
+        const arraySinRepetidos = [...new Set(array)];
+
+        return arraySinRepetidos;
+      };
+
+      let arrayDos = [1, "x", 3, -5, 3, "x"];
+      console.log(
+        `El arreglo ${arrayDos} sin elementos repetidos es ${eliminarRepetidos(
+          arrayDos
+        )}`
+      );
+
+      //*********************************************************************************
+      // 26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+      const promedio = (array = undefined) => {
+        if (array === undefined) throw new Error("No ingreso un valor");
+        if (!(array instanceof Array))
+          throw new Error("El valor ingresado no es un array");
+        if (array.length === 0) throw new Error("El arreglo está vacio");
+        for (const iterator of array) {
+          if (typeof iterator !== "number")
+            throw new Error(
+              `El valor ${iterator} es de tipo ${typeof iterator}`
+            );
+        }
+        let promedioTotal = 0;
+
+        array.reduce((total, numero, index, array) => {
+          total += numero;
+          if (index === array.length - 1) promedioTotal = total / array.length;
+          else return total;
+        });
+
+        return promedioTotal;
+      };
+
+      let arrayTres = [1, 3, -5, 3];
+      console.log(
+        `El promedio del arreglo ${arrayTres} es ${promedio(arrayTres)}`
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Función anónima</title>
+  </head>
+  <body>
+    <h1>Ejemplo Básico</h1>
+    <button onclick="estoEsUnaFuncion()">Click!</button>
+    <script>
+      function estoEsUnaFuncion() {
+        console.log("Uno");
+        console.log("Dos");
+        console.log("Tres");
+        return "Valor retornado de la funcion";
+      }
+
+      console.log(estoEsUnaFuncion());
+
+      // Funcion anonima
+      const funcionExpresada = function () {
+        console.log("Esta es una funcion anonima");
+      };
+      funcionExpresada();
+
+      /*******************************************/
+      let dia = "domingo";
+
+      switch (dia) {
+        case "domingo":
+          console.log("es domingo");
+          break;
+        default:
+          console.log("no es domingo");
+          break;
+      }
+    </script>
+  </body>
+</html>

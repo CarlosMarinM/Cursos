@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temporizadores</title>
+  </head>
+
+  <body>
+    <h1>Temporizadores</h1>
+    <script>
+      console.log("Inicio");
+      let timeout = setTimeout(() => {
+        console.log("Ejecutando un setTimeout, esto se ejecuta una unica vez");
+      }, 1000);
+
+      clearTimeout(timeout);
+      console.log("Despues del clearTimeout");
+
+      let interval = setInterval(() => {
+        console.log(
+          "Ejecutando un setInterval, esto se ejecuta indefinidamente cada 1000ms"
+        );
+      }, 1000);
+
+      clearInterval(interval);
+      console.log("Despues del clearInterval");
+
+    //   setInterval(() => {
+    //     console.clear();
+    //     console.log(new Date().toLocaleTimeString());
+    //   }, 1000);
+    </script>
+  </body>
+</html>

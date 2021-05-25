@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio de logica de programacion 005</title>
+  </head>
+
+  <body>
+    <h1>Ejercicio de logica de programacion 005</h1>
+    <script>
+      //*********************************************************************************
+      // 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+      const contarVocalesConstantes = (texto = undefined) => {
+        if (texto === undefined) throw new Error("No ingreso un valor");
+        if (typeof texto !== "string")
+          throw new Error("El valor ingresado no es un texto");
+
+        return {
+          vocales: texto.replace(/[^a-z]|[^aeiou]/gi, "").length,
+          consonantes: texto.replace(/[^a-z]|[aeiou]/gi, "").length,
+        };
+      };
+
+      let textoUno = "Hola Mundo";
+      let resultado = contarVocalesConstantes(textoUno);
+      console.log(`El texto "${textoUno}" tiene ${resultado.vocales} vocales`);
+      console.log(
+        `El texto "${textoUno}" tiene ${resultado.consonantes} consonantes`
+      );
+
+      //*********************************************************************************
+      // 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+      const esNombreValido = (texto = undefined) => {
+        if (texto === undefined) throw new Error("No ingreso un valor");
+        if (typeof texto !== "string")
+          throw new Error("El valor ingresado no es un texto");
+
+          return /^[a-záéíóúñ\s]+$/gi.test(texto);
+      };
+
+      let textoDos = "Carlos Marin";
+      console.log(`El texto "${textoDos}" es un nombre valido: ${esNombreValido(textoDos)}`);
+
+      //*********************************************************************************
+      // 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+      const esEmailValido = (texto = undefined) => {
+        if (texto === undefined) throw new Error("No ingreso un valor");
+        if (typeof texto !== "string")
+          throw new Error("El valor ingresado no es un texto");
+
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(texto);
+      };
+
+      let email = "Car.los_M1ar-in@algo.com.co";
+      console.log(`El correo "${email}" es valido: ${esEmailValido(email)}`);
+    </script>
+  </body>
+</html>

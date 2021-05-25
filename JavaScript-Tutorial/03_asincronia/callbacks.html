@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callbacks</title>
+  </head>
+
+  <body>
+    <h1>Callbacks</h1>
+    <script>
+      const cuadradoCallback = (value, callback) => {
+        setTimeout(() => {
+          callback(value, value * value);
+        }, 0 | (Math.random() * 1000));
+      };
+
+      cuadradoCallback(0, (value, result) => {
+        console.log("Inicia callback");
+        console.log(`Callback: ${value}, ${result}`);
+        cuadradoCallback(1, (value, result) => {
+          console.log(`Callback: ${value}, ${result}`);
+          cuadradoCallback(2, (value, result) => {
+            console.log(`Callback: ${value}, ${result}`);
+            cuadradoCallback(3, (value, result) => {
+              console.log(`Callback: ${value}, ${result}`);
+              cuadradoCallback(4, (value, result) => {
+                console.log(`Callback: ${value}, ${result}`);
+                cuadradoCallback(5, (value, result) => {
+                  console.log(`Callback: ${value}, ${result}`);
+                  cuadradoCallback(6, (value, result) => {
+                    console.log(`Callback: ${value}, ${result}`);
+                    cuadradoCallback(7, (value, result) => {
+                      console.log(`Callback: ${value}, ${result}`);
+                      cuadradoCallback(8, (value, result) => {
+                        console.log(`Callback: ${value}, ${result}`);
+                        cuadradoCallback(9, (value, result) => {
+                          console.log(`Callback: ${value}, ${result}`);
+                          console.log("Fin Callback");
+                          console.log("Callback Hell !!!!!👿 ");
+                          console.log("http://callbackhell.com/");
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
