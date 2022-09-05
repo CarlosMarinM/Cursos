@@ -1,0 +1,6 @@
+server:
+  port: 8005
+
+configuracion:
+  texto: Configurando entorno por defecto
+

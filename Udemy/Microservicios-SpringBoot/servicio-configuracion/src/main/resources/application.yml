@@ -1,0 +1,14 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/CarlosMarinM/Microservicios-SpringBoot-servicio-items-config.git
+          username: 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
+          password:
+          default-label: master

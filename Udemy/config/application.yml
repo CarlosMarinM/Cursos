@@ -1,0 +1,17 @@
+config:
+  security:
+    oauth:
+      client:
+        id: frontendapp
+        secret: 12345
+      jwt:
+        key: 41gun_c0d1g0_s3cr3t0_l0_suf1c13nt3m3nt3_53gur0
+
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://zipkin:9411/
+  rabbitmq:
+    host: rabbitmq

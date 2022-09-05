@@ -1,0 +1,121 @@
+version: '3.7'
+services:
+  config-server:
+    image: config-server:v1
+    ports:
+      - "8888:8888"
+    restart: always
+    networks:
+      - springcloud
+  eureka-server:
+    image: eureka-server:v1
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - springcloud
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "33061:3306"
+    restart: always
+    networks:
+      - springcloud
+    environment:
+      - MYSQL_DATABASE=db_springboot_cloud
+      - MYSQL_ROOT_PASSWORD=secret
+    volumes:
+      - ./mysql_scripts/zipkin_db.sql:/docker-entrypoint-initdb.d/01_zipkin_db.sql
+      - ./mysql_scripts/zipkin_tables.sql:/docker-entrypoint-initdb.d/02_zipkin_tables.sql
+      - ./mysql_scripts/zipkin_user.sql:/docker-entrypoint-initdb.d/03_zipkin_user.sql
+  postgresql :
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - springcloud
+    environment:
+      - POSTGRES_DB=db_springboot_cloud
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=secret
+  product-server:
+    image: product-server:v1
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - mysql
+  item-server:
+    image: item-server:v1
+    ports:
+      - "8002:8002"
+      - "8005:8005"
+      - "8007:8007"
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - product-server
+  user-server:
+    image: user-server:v1
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - postgresql
+  oauth-server:
+    image: oauth-server:v1
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - user-server
+  gateway-server:
+    image: gateway-server:v1
+    ports:
+      - "8090:8090"
+    restart: always
+    networks:
+      - springcloud
+    depends_on:
+      - config-server
+      - eureka-server
+      - product-server
+      - item-server
+      - user-server
+      - oauth-server
+  rabbitmq:
+    image: rabbitmq:3.10.6-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    restart: always
+    networks:
+      - springcloud
+  zipkin:
+    image: openzipkin/zipkin:latest
+    ports:
+      - "9411:9411"
+    restart: always
+    networks:
+      - springcloud
+    depends_on: 
+      - rabbitmq
+      - mysql
+    environment: 
+      - RABBIT_ADDRESSES=rabbitmq:5672
+      - STORAGE_TYPE=mysql
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+      - MYSQL_HOST=mysql
+networks:
+  springcloud:
