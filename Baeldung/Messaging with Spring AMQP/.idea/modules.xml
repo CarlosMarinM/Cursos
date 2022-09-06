@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Messaging with Spring AMQP.iml" filepath="$PROJECT_DIR$/.idea/Messaging with Spring AMQP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/amqp/amqp.iml" filepath="$PROJECT_DIR$/amqp/amqp.iml" />
+    </modules>
+  </component>
+</project>
