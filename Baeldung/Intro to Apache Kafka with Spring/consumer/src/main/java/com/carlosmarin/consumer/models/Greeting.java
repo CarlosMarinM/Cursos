@@ -1,4 +1,4 @@
-package com.carlosmarin.kafka.models;
+package com.carlosmarin.consumer.models;
 
 import lombok.Data;
 

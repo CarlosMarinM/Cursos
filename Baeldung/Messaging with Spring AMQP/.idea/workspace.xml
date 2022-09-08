@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7e8a9f6-f554-42ea-a0c3-50e077da8ab6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amqp/src/main/java/com/carlosmarin/amqp/config/AmqpConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Udemy/Microservicios-SpringBoot-Docker-Kubernetes/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Udemy/Microservicios-SpringBoot-Docker-Kubernetes/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/User/eclipse-workspace/Cursos/Baeldung/Messaging with Spring AMQP"
+    "last_opened_file_path": "C:/Users/User/eclipse-workspace/Cursos/Baeldung/Intro to Apache Kafka with Spring"
   }
 }]]></component>
   <component name="RunManager">

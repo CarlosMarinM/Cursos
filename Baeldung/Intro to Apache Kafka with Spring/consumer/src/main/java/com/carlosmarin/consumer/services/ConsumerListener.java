@@ -3,7 +3,7 @@ package com.carlosmarin.consumer.services;
 import com.carlosmarin.consumer.models.Greeting;
 import org.springframework.kafka.annotation.KafkaListener;
 
-public class Consumer {
+public class ConsumerListener {
 
     @KafkaListener(topics = "baeldung", groupId = "baeldungGrp")
     public void listenGroupFoo(String message) {
