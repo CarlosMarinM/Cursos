@@ -8,18 +8,21 @@
 <h1 th:text="${title}"></h1>
 <a th:href="@{/list}">Back</a>
 
-<form th:action="@{/form}" method="post" th:object="${product}">
+<form th:action="@{/form}" method="post" th:object="${product}" enctype="multipart/form-data">
+    <input th:if="${product.id != null}" type="hidden" th:field="*{id}"/>
     <div>
         <label for="name">Name</label>
         <div>
             <input type="text" th:field="*{name}"/>
         </div>
+        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
     </div>
     <div>
         <label for="price">Price</label>
         <div>
             <input type="number" th:field="*{price}"/>
         </div>
+        <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
     </div>
     <div>
         <label for="createAt">Date</label>
@@ -28,11 +31,27 @@
         </div>
     </div>
     <div>
+        <label for="category.id">Category</label>
         <div>
-            <input type="submit" value="Create"/>
+            <select th:field="*{category.id}">
+                <option value="">-- seleccionar --</option>
+                <option th:each="category: ${categories}" th:value="${category.id}"
+                        th:text="${category.nombre}"></option>
+            </select>
+        </div>
+        <small th:if="${#fields.hasErrors('category.id')}" th:errors="*{category.id}"></small>
+    </div>
+    <div>
+        <label for="file">Photo</label>
+        <div>
+            <input type="file" name="file"/>
+        </div>
+    </div>
+    <div>
+        <div>
+            <input type="submit" th:value="${buttonName}"/>
         </div>
     </div>
 </form>
-
 </body>
 </html>
